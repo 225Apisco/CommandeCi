@@ -1,0 +1,171 @@
+/* =========================================================
+   COMMANDECI — SYSTÈME DE DESIGN
+   Palette née des marchés ivoiriens (papaye, indigo des tissus
+   teints, vert feuille) et de l'idée centrale du produit :
+   un message WhatsApp qui se transforme en commande structurée.
+   Signature : le "bord déchiré" du reçu / bulle de discussion.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* Couleurs */
+  --cci-encre: #14162B;
+  --cci-indigo: #2C2A6B;
+  --cci-indigo-clair: #423FA0;
+  --cci-papaye: #FF7A1A;
+  --cci-papaye-fonce: #E7650A;
+  --cci-feuille: #1F8A4C;
+  --cci-corail: #FF5C72;
+  --cci-sable: #FBF6EE;
+  --cci-sable-fonce: #F1E9D8;
+  --cci-blanc: #FFFFFF;
+  --cci-gris: #6B6E85;
+  --cci-gris-clair: #E4E1F0;
+
+  /* Typographie */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  /* Rayon & ombre */
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 8px;
+  --ombre-carte: 0 4px 24px rgba(20, 22, 43, 0.08);
+  --ombre-flottante: 0 12px 32px rgba(20, 22, 43, 0.18);
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--cci-sable);
+  color: var(--cci-encre);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.font-mono, .prix, .numero-commande {
+  font-family: var(--font-mono);
+}
+
+/* ---------- Boutons ---------- */
+.btn-cci-primary {
+  background: var(--cci-papaye);
+  border: none;
+  color: var(--cci-blanc);
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.65rem 1.5rem;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.btn-cci-primary:hover { background: var(--cci-papaye-fonce); transform: translateY(-1px); color: #fff; }
+
+.btn-cci-outline {
+  background: transparent;
+  border: 1.5px solid var(--cci-indigo);
+  color: var(--cci-indigo);
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.6rem 1.4rem;
+}
+.btn-cci-outline:hover { background: var(--cci-indigo); color: #fff; }
+
+.btn-whatsapp {
+  background: #25D366;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-weight: 600;
+  padding: 0.6rem 1.3rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.btn-whatsapp:hover { background: #1eb455; color: #fff; }
+
+/* ---------- Cartes ---------- */
+.carte-cci {
+  background: var(--cci-blanc);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--ombre-carte);
+  border: 1px solid var(--cci-sable-fonce);
+}
+
+/* ---------- Signature : bord déchiré (motif reçu) ---------- */
+.bord-dechire {
+  position: relative;
+}
+.bord-dechire::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 14px;
+  background: linear-gradient(-45deg, var(--cci-sable) 8px, transparent 0),
+              linear-gradient(45deg, var(--cci-sable) 8px, transparent 0);
+  background-size: 16px 16px;
+  background-position: bottom;
+}
+
+/* ---------- Badges statut commande ---------- */
+.badge-statut {
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3rem 0.75rem;
+  text-transform: capitalize;
+}
+.badge-statut.nouvelle { background: #FFF1E4; color: var(--cci-papaye-fonce); }
+.badge-statut.confirmee { background: #E7E6F7; color: var(--cci-indigo); }
+.badge-statut.preparation { background: #FEF6D8; color: #9A7B00; }
+.badge-statut.expediee { background: #DCEBFF; color: #1554A8; }
+.badge-statut.livree { background: #DFF3E6; color: var(--cci-feuille); }
+.badge-statut.annulee { background: #FCE3E6; color: var(--cci-corail); }
+
+/* ---------- Badge Premium (mise en avant 2%) ---------- */
+.badge-premium {
+  background: linear-gradient(90deg, var(--cci-indigo), var(--cci-indigo-clair));
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+}
+
+/* ---------- Barre de navigation mobile vendeur (app-like) ---------- */
+.nav-mobile-vendeur {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--cci-blanc);
+  border-top: 1px solid var(--cci-sable-fonce);
+  display: flex;
+  justify-content: space-around;
+  overflow-x: auto;
+  padding: 0.5rem 0 calc(0.5rem + env(safe-area-inset-bottom));
+  z-index: 1000;
+}
+.nav-mobile-vendeur a {
+  color: var(--cci-gris);
+  text-decoration: none;
+  font-size: 0.65rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+  padding: 0 0.5rem;
+}
+.nav-mobile-vendeur a.actif { color: var(--cci-papaye); }
+
+/* ---------- Utilitaires ---------- */
+.text-papaye { color: var(--cci-papaye); }
+.text-indigo-cci { color: var(--cci-indigo); }
+.text-feuille { color: var(--cci-feuille); }
+.bg-encre { background: var(--cci-encre); }
+.bg-indigo-cci { background: var(--cci-indigo); }
